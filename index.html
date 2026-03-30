@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Registration Form</title>
+</head>
+
+<style>
+  body {
+    background-color: mistyrose; 
+    text-align: center;
+  }
+
+  table {
+    border: 3px solid #1e1d1d;
+    text-align: center;
+    font-size: 23px;
+    width: 100%;
+    border-collapse: collapse;
+    height: 1000px;
+    color: tomato;
+  }
+
+  th {
+    border: 3px solid maroon;
+    background-color: #FCD4AC;
+  }
+
+  td {
+    border: 3px solid  maroon;
+    background-color: #F5DEB3;
+  }
+#sub{
+  background: white;
+  color: green;
+  border: 2px solid green;
+  border-radius: 10px;
+  font-size: 20px;
+}
+#sub:active{
+  background: forestgreen;
+  color: maroon;
+}
+
+#res{
+  background: white;
+  color: red;
+  border: 2px solid red;
+  border-radius: 10px;
+  font-size: 20px;
+}
+
+#res:active{
+  background: red;
+  color: black;
+}
+
+  
+</style>
+
+<body>
+
+  <form method="post">
+    <table border="5" bg-color="#FFF0F5" text-align="center">
+       <caption style="font-size:30px">Registration Form</caption>
+      <tr>
+        <td>Enter Your First Name</td>
+        <th><input type="text" maxlength="10" placeholder="First Name" required></th>
+      </tr>
+
+      <tr>
+        <td>Enter Your Last Name</td>
+        <th><input type="text" maxlength="10" placeholder="Last Name" required></th>
+      </tr>
+
+      <tr>
+        <td>Enter Your Father's Name</td>
+        <th><input type="text" maxlength="20" placeholder="Father's Name"></th>
+      </tr>
+
+      <tr>
+        <td>Enter Your Mother's Name</td>
+        <th><input type="text" maxlength="20" placeholder="Mother's Name"></th>
+      </tr>
+
+      <tr>
+        <td>Enter Your Mobile Number</td>
+        <th><input type="tel" pattern="[0-9]{10}" inputmode="numeric" placeholder="10 digit number" required></th>
+      </tr>
+
+      <tr>
+        <td>Enter Your Email ID</td>
+        <th><input type="email" placeholder="example@gmail.com" required></th>
+      </tr>
+
+      <tr>
+        <td>Select Your Date of Birth</td>
+        <th><input type="date" required></th>
+      </tr>
+
+      <tr>
+        <td>Select Your Gender</td>
+        <th>
+          <label><input type="radio" name="gender" value="male" required> Male</label>
+          <label><input type="radio" name="gender" value="female"> Female</label>
+          <label><input type="radio" name="gender" value="other"> Others</label>
+        </th>
+      </tr>
+
+      <tr>
+        <td>Enter Your Address</td>
+        <th><textarea rows="4" placeholder="Enter your address"></textarea></th>
+      </tr>
+
+      <tr>
+        <td>Select Your Course</td>
+        <th>
+          <select required>
+            <option value="" disabled selected>Select Course</option>
+            <option>B.A</option>
+            <option>B.Sc</option>
+            <option>B.Com</option>
+            <option>BCA</option>
+            <option>BBA</option>
+            <option>B.Tech</option>
+            <option>M.A</option>
+            <option>M.Sc</option>
+            <option>M.Com</option>
+            <option>MBA</option>
+            <option>MCA</option>
+            <option>M.Tech</option>
+          </select>
+        </th>
+      </tr>
+
+      <tr>
+        <td>Choose Your Hobbies</td>
+        <th style="font-size:14px">
+          <label><input type="checkbox" name="hobbies" value="dancing"> Dancing</label>
+          <label><input type="checkbox" name="hobbies" value="singing"> Singing</label>
+          <label><input type="checkbox" name="hobbies" value="drawing"> Drawing</label>
+          <label><input type="checkbox" name="hobbies" value="others"> Others</label>
+        </th>
+      </tr>
+
+      <tr>
+        <td>Enter Your Pin Code</td>
+        <th><input type="number" min="100000" max="999999" placeholder="Enter Your Pin Code" style="width:150px;" required></th>
+      </tr>
+
+      <tr>
+        <td> Password</td>
+        <th><input type="password" minlength="8" maxlength="16" placeholder="Password" required></th>
+      </tr>
+
+      <tr>
+        <td>Confirm Password</td>
+        <th><input type="password" minlength="8" maxlength="16"placeholder="Confirm Password"required></th>
+      </tr>
+
+      <tr>
+        <td>Upload Marksheet</td>
+        <th><input type="file" accept=".pdf,.jpg,.png" required></th>
+      </tr>
+
+      <tr>
+        <th colspan="2">
+          <label>
+            <input type="checkbox" required>
+            I confirm that all the information provided is true and correct.
+          </label>
+        </th>
+      </tr>
+
+      <tr>
+        <th colspan="2">
+          <button id="sub" type="submit">Submit</button>
+          <button id="res" type="reset">Reset</button>
+        </th>
+      </tr>
+
+    </table>
+  </form>
+  
+  <script>
+document.querySelector("form").addEventListener("submit", function(e){
+    e.preventDefault();
+
+    // Password match check 🔐
+    let password = document.querySelectorAll('input[type="password"]')[0].value;
+    let confirmPassword = document.querySelectorAll('input[type="password"]')[1].value;
+
+    if(password !== confirmPassword){
+        alert("Password match nahi kar raha ❌");
+        return;
+    }
+
+    // Data collect 📊
+    let firstName = document.querySelector('input[placeholder="First Name"]').value;
+    let lastName = document.querySelector('input[placeholder="Last Name"]').value;
+    let fatherName = document.querySelector('input[placeholder="Father\'s Name"]').value;
+    let motherName = document.querySelector('input[placeholder="Mother\'s Name"]').value;
+    let mobile = document.querySelector('input[type="tel"]').value;
+    let email = document.querySelector('input[type="email"]').value;
+    let dob = document.querySelector('input[type="date"]').value;
+    let gender = document.querySelector('input[name="gender"]:checked')?.value;
+    let address = document.querySelector('textarea').value;
+    let course = document.querySelector('select').value;
+    let hobbies = [...document.querySelectorAll('input[name="hobbies"]:checked')].map(e => e.value).join(", ");
+    let pincode = document.querySelector('input[type="number"]').value;
+
+    // Message format 📩
+    let message = `📝 New Registration Form
+
+👤 Name: ${firstName} ${lastName}
+👨 Father: ${fatherName}
+👩 Mother: ${motherName}
+
+📞 Mobile: ${mobile}
+📧 Email: ${email}
+
+🎂 DOB: ${dob}
+⚧ Gender: ${gender}
+
+🏠 Address: ${address}
+🎓 Course: ${course}
+
+🎯 Hobbies: ${hobbies}
+📮 Pincode: ${pincode}`;
+
+    // 👇 Apna WhatsApp number yaha daalo
+    let phoneNumber = "918077624173";
+
+let url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+
+window.open(url, "_blank");
+});
+</script>
+  
+
+</body>
+
+
+</html>
